@@ -1,6 +1,7 @@
 package com.qbao.log;
 
 import com.qbao.util.EmailUtil;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
@@ -9,7 +10,7 @@ import java.util.Map;
  * @author song.j
  * @create 2017-10-17 09:09:08
  **/
-public abstract class AbstractQbLogger implements QbLogger {
+public abstract class AbstractQbLogger extends LogManager implements QbLogger {
 
     protected static Logger log = null;
 
@@ -32,10 +33,9 @@ public abstract class AbstractQbLogger implements QbLogger {
      * @param msg 消息
      */
     public void asyncSendEmail(String msg) {
-        Runnable run = () -> {
+        new Thread(() -> {
             sendEmail(msg);
-        };
-        new Thread(run).start();
+        }).start();
     }
 
 

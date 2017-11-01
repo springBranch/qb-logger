@@ -3,7 +3,6 @@ package com.qbao.log;
 
 import com.qbao.util.MessageFormatUtil;
 import com.qbao.util.StackTraceUtil;
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.message.ParameterizedMessage;
 
 /**
@@ -14,7 +13,7 @@ public class MonitorQbLogger extends AbstractQbLogger {
 
 
     public MonitorQbLogger(Class cla) {
-        super(LogManager.getLogger(cla));
+        super(getLogger(cla));
     }
 
 
