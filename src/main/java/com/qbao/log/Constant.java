@@ -75,7 +75,6 @@ public class Constant {
         System.out.println("classpath: " + classpath);
 
         try {
-
             File file = new File(classpath + "qb-logger.properties");
 
             if (!file.exists()) {
