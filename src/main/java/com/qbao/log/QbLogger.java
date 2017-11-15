@@ -120,5 +120,11 @@ public interface QbLogger {
      */
     void error(Throwable cause);
 
+    /**
+     * send message to email
+     *
+     * @param message
+     */
+    void send(String message);
 
 }

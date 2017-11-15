@@ -10,4 +10,8 @@ public class QbLoggerManager {
         return new MonitorQbLogger(cla);
     }
 
+    public static QbLogger getLogger(Class cla,boolean send){
+        return new MonitorQbLogger(cla,send);
+    }
+
 }

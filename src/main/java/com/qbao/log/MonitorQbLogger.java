@@ -16,6 +16,9 @@ public class MonitorQbLogger extends AbstractQbLogger {
         super(getLogger(cla));
     }
 
+    public MonitorQbLogger(Class cla,Boolean send) {
+        super(getLogger(cla),send);
+    }
 
     @Override
     public void error(String msg, Object... params) {

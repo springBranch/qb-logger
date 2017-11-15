@@ -14,16 +14,31 @@ public abstract class AbstractQbLogger extends LogManager implements QbLogger {
 
     protected static Logger log = null;
 
+    /**
+     * 是否发送短信开关。
+     */
+    public static boolean sendEnable = true;
+
     public AbstractQbLogger(Logger log) {
         this.log = log;
     }
 
-    public void sendEmail(String msg) {
-        //send email
-        EmailUtil.getInstance().sendEmail(msg);
+    public AbstractQbLogger(Logger log, boolean sendEnable) {
+        this.log = log;
+        this.sendEnable = sendEnable;
     }
 
-    public boolean hasSendEmail(){
+    public void sendEmail(String msg) {
+
+
+        if (sendEnable)
+        //send email
+        EmailUtil.getInstance().sendEmail(msg);
+
+
+    }
+
+    public boolean hasSendEmail() {
         return Constant.sendEmailEnable;
     }
 
@@ -74,12 +89,12 @@ public abstract class AbstractQbLogger extends LogManager implements QbLogger {
 
     @Override
     public void trace(String msg, Object... params) {
-        log.trace(msg,params);
+        log.trace(msg, params);
     }
 
     @Override
     public void trace(String msg, Throwable cause, Object... params) {
-        log.trace(msg,cause,params);
+        log.trace(msg, cause, params);
     }
 
     @Override
@@ -153,4 +168,9 @@ public abstract class AbstractQbLogger extends LogManager implements QbLogger {
     }
 
 
+    @Override
+    public void send(String message) {
+        asyncSendEmail(message);
+        info(message);
+    }
 }
